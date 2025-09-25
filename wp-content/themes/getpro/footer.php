@@ -9,10 +9,12 @@
                             </a>
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="upper_footer_para">
                             <p>let's make something new, different <b>great together.</b> <span>Just say hello</span></p>
                         </div>
+
                         <div class="upper_footer_info">
                             <div class="upper_footer_info_items">
                                 <div class="upper_footer_info_img">
@@ -42,6 +44,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="footer_social_media">
                             <ul>
                                 <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/fb_icon.png"></a></li>
@@ -51,7 +54,9 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="offset-md-1"></div>
+
                     <div class="col-md-7">
                         <div class="upper_footer_form">
                             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
@@ -100,13 +105,18 @@
             </section>
         <?php endif; ?>
 
-        <!-- START FOOTER -->
+        <!-- START COPYRIGHT FOOTER -->
         <footer class="footer_sec">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="footer_cont">
-                            <p>Copyright © <?php echo date('Y'); ?> Design and Developed by <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a> all Rights Reserved.</p>
+                            <p>
+                                Copyright © <?php echo date('Y'); ?> 
+                                Design and Developed by 
+                                <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+                                all Rights Reserved.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -115,8 +125,6 @@
         <!-- END FOOTER -->
 
     </main>
-    <!-- END MAIN PART -->
-
     <?php wp_footer(); ?>
-</body>
+    </body>
 </html>

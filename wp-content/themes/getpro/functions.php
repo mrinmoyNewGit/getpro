@@ -31,7 +31,7 @@ function getpro_enqueue_scripts() {
     wp_enqueue_style('owl-theme', get_template_directory_uri() . '/css/owl.theme.default.min.css', array(), '2.3.4');
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap', array(), null);
     wp_enqueue_style('getpro-style', get_stylesheet_uri(), array(), '1.0.0');
-    wp_enqueue_style('custom-style', get_template_directory_uri() . '/css/style.css', array(), '1.0.0');
+    wp_enqueue_style('custom-style', get_template_directory_uri() . '/style.css', array(), '1.0.0');
     
     // Scripts
     wp_enqueue_script('jquery');
@@ -45,15 +45,46 @@ function getpro_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'getpro_enqueue_scripts');
 
 // Register Widget Areas
+// Register Footer Widget Areas
 function getpro_widgets_init() {
+    // Column 1: OUR COMPANY (Menu)
     register_sidebar(array(
-        'name' => __('Footer Widget Area', 'getpro-design'),
-        'id' => 'footer-widget-area',
-        'description' => __('Footer widget area', 'getpro-design'),
-        'before_widget' => '<div class="footer_element">',
-        'after_widget' => '</div>',
-        'before_title' => '<h6>',
-        'after_title' => '</h6>',
+        'name'          => __('Footer Column 1 - Our Company', 'getpro-design'),
+        'id'            => 'footer-col-1',
+        'before_widget' => '<div class="footer_element footer_padding_left animatable bounceInLeft">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h6>',
+        'after_title'   => '</h6>',
+    ));
+
+    // Column 2: OUR PROCESS (Menu or Text)
+    register_sidebar(array(
+        'name'          => __('Footer Column 2 - Our Process', 'getpro-design'),
+        'id'            => 'footer-col-2',
+        'before_widget' => '<div class="footer_element animatable fadeInDown">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h6>',
+        'after_title'   => '</h6>',
+    ));
+
+    // Column 3: GET IN TOUCH
+    register_sidebar(array(
+        'name'          => __('Footer Column 3 - Get In Touch', 'getpro-design'),
+        'id'            => 'footer-col-3',
+        'before_widget' => '<div class="footer_element animatable fadeInUp">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h6>',
+        'after_title'   => '</h6>',
+    ));
+
+    // Column 4: NEWSLETTER
+    register_sidebar(array(
+        'name'          => __('Footer Column 4 - Newsletter', 'getpro-design'),
+        'id'            => 'footer-col-4',
+        'before_widget' => '<div class="footer_element footer_newsletter animatable bounceInRight">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h6>',
+        'after_title'   => '</h6>',
     ));
 }
 add_action('widgets_init', 'getpro_widgets_init');
@@ -108,4 +139,40 @@ function getpro_register_banner_post_type() {
     );
 }
 add_action('init', 'getpro_register_banner_post_type');
+// Custom Post Type for Skills
+function getpro_register_skills_post_type() {
+    register_post_type('skill',
+        array(
+            'labels' => array(
+                'name'          => __('Skills'),
+                'singular_name' => __('Skill'),
+                'add_new_item'  => __('Add New Skill'),
+                'edit_item'     => __('Edit Skill')
+            ),
+            'public'      => true,
+            'has_archive' => false,
+            'menu_icon'   => 'dashicons-chart-pie',
+            'supports'    => array('title'),
+        )
+    );
+}
+add_action('init', 'getpro_register_skills_post_type');
+// Custom Post Type: Expertise
+function getpro_register_expertise_post_type() {
+    register_post_type('expertise',
+        array(
+            'labels' => array(
+                'name'          => __('Expertise'),
+                'singular_name' => __('Expertise Item'),
+                'add_new_item'  => __('Add New Expertise Item'),
+                'edit_item'     => __('Edit Expertise Item')
+            ),
+            'public'      => true,
+            'has_archive' => false,
+            'menu_icon'   => 'dashicons-lightbulb',
+            'supports'    => array('title', 'editor'),
+        )
+    );
+}
+add_action('init', 'getpro_register_expertise_post_type');
 ?>

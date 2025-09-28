@@ -122,21 +122,38 @@ get_header(); ?>
           </div>
         </div>
 
-        <!-- Skill example -->
-        <div class="col-md-3 col-sm-6">
-          <div class="my_skill_per">
-            <div class="circle-big circle_one">
-              <div class="circle_text"><p>75%</p></div>
-              <svg>
-                <circle class="bg" cx="57" cy="57" r="52"></circle>
-                <circle class="progress progress_one" cx="57" cy="65" r="65"></circle>
-              </svg>
-            </div>
-            <div class="skill_name"><h6>UI UX DESIGN</h6></div>
-          </div>
-        </div>
+        <?php
+        $args = array(
+            'post_type'      => 'skill',
+            'posts_per_page' => -1,
+            'orderby'        => 'date',
+            'order'          => 'ASC'
+        );
+        $skills = new WP_Query($args);
 
-        <!-- Repeat other skill blocks here... -->
+        if ($skills->have_posts()) :
+            while ($skills->have_posts()) : $skills->the_post();
+                $percentage   = get_post_meta(get_the_ID(), 'skill_percentage', true); 
+                $skill_class  = get_post_meta(get_the_ID(), 'skill_class', true); 
+                ?>
+                
+                <div class="col-md-3 col-sm-6">
+                  <div class="my_skill_per">
+                    <div class="circle-big <?php echo esc_attr($skill_class); ?>">
+                      <div class="circle_text"><p><?php echo esc_html($percentage); ?>%</p></div>
+                      <svg>
+                        <circle class="bg" cx="57" cy="57" r="52"></circle>
+                        <circle class="progress" cx="57" cy="65" r="65"></circle>
+                      </svg>
+                    </div>
+                    <div class="skill_name"><h6><?php the_title(); ?></h6></div>
+                  </div>
+                </div>
+
+        <?php endwhile; wp_reset_postdata();
+        else : ?>
+            <p>No skills added yet.</p>
+        <?php endif; ?>
 
       </div>
     </div>
@@ -156,23 +173,51 @@ get_header(); ?>
       <div class="col-md-12">
         <div id="expertise_area" class="owl-carousel owl-theme">
 
-          <!-- Item example -->
-          <div class="item">
-            <a href="#">
-              <div class="expertise_item">
-                <div class="expertise_img">
-                  <img class="img-fluid exp-one" src="<?php echo get_template_directory_uri(); ?>/images/icon/expertise_img/image_one.png">
-                  <img class="img-fluid exp-two" src="<?php echo get_template_directory_uri(); ?>/images/icon/expertise_img/image_one_hover.png">
-                </div>
-                <div class="expertise_head"><h4>UI UX DESIGN</h4></div>
-                <div class="expertise_content">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-              </div>
-            </a>
-          </div>
+          <?php
+          $args = array(
+              'post_type'      => 'expertise',
+              'posts_per_page' => -1,
+              'orderby'        => 'date',
+              'order'          => 'ASC'
+          );
+          $expertise = new WP_Query($args);
 
-          <!-- Repeat additional expertise items... -->
+          if ($expertise->have_posts()) :
+              while ($expertise->have_posts()) : $expertise->the_post();
+                  
+                  $icon_default = get_field('expertise_icon_default');
+                  $icon_hover   = get_field('expertise_icon_hover');
+                  $link         = get_field('expertise_link');
+                  
+                  ?>
+                  <div class="item">
+                    <a href="<?php echo esc_url($link ? $link : '#'); ?>">
+                      <div class="expertise_item">
+                        
+                        <div class="expertise_img">
+                          <?php if ($icon_default) : ?>
+                              <img class="img-fluid exp-one" src="<?php echo esc_url($icon_default['url']); ?>" alt="<?php the_title(); ?>">
+                          <?php endif; ?>
+                          
+                          <?php if ($icon_hover) : ?>
+                              <img class="img-fluid exp-two" src="<?php echo esc_url($icon_hover['url']); ?>" alt="<?php the_title(); ?> hover">
+                          <?php endif; ?>
+                        </div>
+                        
+                        <div class="expertise_head"><h4><?php the_title(); ?></h4></div>
+                        
+                        <div class="expertise_content">
+                          <?php the_content(); ?>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+              <?php endwhile;
+              wp_reset_postdata();
+          else :
+              echo "<p>No expertise items added yet.</p>";
+          endif;
+          ?>
 
         </div>
       </div>

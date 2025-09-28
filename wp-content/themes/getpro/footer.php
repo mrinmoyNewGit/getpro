@@ -61,7 +61,8 @@
                         <div class="upper_footer_form">
                             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <input type="hidden" name="action" value="contact_form">
-                                <?php wp_nonce_field('contact_form_nonce'); ?>
+                                <?php /* If this line breaks the footer, just comment it out */ ?>
+                                <?php if (function_exists('wp_nonce_field')) wp_nonce_field('contact_form_nonce'); ?>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="upper_footer_inputs">
@@ -94,18 +95,74 @@
             </div>
         </section>
 
-        <!-- Dynamic Footer Widget Area -->
-        <?php if (is_active_sidebar('footer-widget-area')) : ?>
-            <section class="upper_footer_sec">
-                <div class="container">
-                    <div class="row">
-                        <?php dynamic_sidebar('footer-widget-area'); ?>
+        <!-- FOOTER COLUMNS -->
+        <section class="upper_footer_sec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <?php if (is_active_sidebar('footer-col-1')) {
+                            dynamic_sidebar('footer-col-1');
+                        } else { ?>
+                        <div>not showing</div>
+                        <?php } ?>
+                    </div>
+
+                    <div class="col-md-3 padd">
+                        <?php if (is_active_sidebar('footer-col-2')) {
+                            dynamic_sidebar('footer-col-2');
+                        } else { ?>
+                        <div class="footer_element animatable fadeInDown">
+                            <h6>OUR PROCESS</h6>
+                            <ul>
+                                <li><a href="#">Identifying the Problems</a></li>
+                                <li><a href="#">Challenging the Bureaus</a></li>
+                                <li><a href="#">Analyzing Updated Reports</a></li>
+                                <li><a href="#">Weekly Education</a></li>
+                            </ul>
+                        </div>
+                        <?php } ?>
+                    </div>
+
+                    <div class="col-md-3">
+                        <?php if (is_active_sidebar('footer-col-3')) {
+                            dynamic_sidebar('footer-col-3');
+                        } else { ?>
+                        <div class="footer_element animatable fadeInUp">
+                            <h6>GET IN TOUCH</h6>
+                            <p>We're here to listen</p>
+                            <ul>
+                                <li><p><img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/address_icon.png">6655 WEST SAHARA B200</p></li>
+                                <li><p><img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/phone_icon.png"><a href="tel:877-342-6787">877-342-6787</a></p></li>
+                                <li><p><img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/mail_icon.png"><a href="mailto:info@creditredesign.com">info@creditredesign.com</a></p></li>
+                            </ul>
+                            <div class="footer_emp_login"><a href="#">Employee Login</a></div>
+                        </div>
+                        <?php } ?>
+                    </div>
+
+                    <div class="col-md-3 padd">
+                        <?php if (is_active_sidebar('footer-col-4')) {
+                            dynamic_sidebar('footer-col-4');
+                        } else { ?>
+                        <div class="footer_element footer_newsletter animatable bounceInRight">
+                            <h6>NEWSLETTER</h6>
+                            <p>Receive resources & tools that can help you prepare for the future. You can cancel anytime.</p>
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="YOUR MAIL HERE" required>
+                                </div>
+                                <div class="fico_form_button">
+                                    <button type="submit"><i class="fa fa-check" aria-hidden="true"></i> SUBSCRIBE NOW</button>
+                                </div>
+                            </form>
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
-            </section>
-        <?php endif; ?>
+            </div>
+        </section>
 
-        <!-- START COPYRIGHT FOOTER -->
+        <!-- COPYRIGHT FOOTER -->
         <footer class="footer_sec">
             <div class="container">
                 <div class="row">

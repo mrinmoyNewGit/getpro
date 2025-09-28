@@ -18,41 +18,67 @@
                         <div class="upper_footer_info">
                             <div class="upper_footer_info_items">
                                 <div class="upper_footer_info_img">
-                                    <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_one.png">
+                                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_one.png">
                                 </div>
                                 <div class="upper_footer_info_cont">
-                                    <h6>Call Us</h6>
-                                    <a href="tel:+91 9007957698">+91 000000000</a>
+                                <h6><?php the_field('footer_phone_label'); ?></h6>
+                                <a href="tel:<?php the_field('footer_phone_number'); ?>">
+                                    <?php the_field('footer_phone_number'); ?>
+                                </a>
                                 </div>
                             </div>
-                            <div class="upper_footer_info_items">
-                                <div class="upper_footer_info_img">
-                                    <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_two.png">
-                                </div>
-                                <div class="upper_footer_info_cont">
-                                    <h6>Email</h6>
-                                    <a href="mailto:info@getprdesign.com">info@getprdesign.com</a>
-                                </div>
-                            </div>
-                            <div class="upper_footer_info_items">
-                                <div class="upper_footer_info_img">
-                                    <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_three.png">
-                                </div>
-                                <div class="upper_footer_info_cont">
-                                    <h6>Address</h6>
-                                    <a href="https://goo.gl/maps/3J4UmXex4k5Xmd7a8" target="_blank">2nd Floor, PS Techno Park, 75, EN Block, Sector V, Bidhannagar</a>
-                                </div>
-                            </div>
-                        </div>
 
+                            <div class="upper_footer_info_items">
+                                <div class="upper_footer_info_img">
+                                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_two.png">
+                                </div>
+                                <div class="upper_footer_info_cont">
+                                <h6><?php the_field('footer_email_label'); ?></h6>
+                                <a href="mailto:<?php the_field('footer_email'); ?>">
+                                    <?php the_field('footer_email'); ?>
+                                </a>
+                                </div>
+                            </div>
+
+                            <div class="upper_footer_info_items">
+                                <div class="upper_footer_info_img">
+                                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_three.png">
+                                </div>
+                                <div class="upper_footer_info_cont">
+                                <h6><?php the_field('footer_address_label'); ?></h6>
+                                <a href="<?php the_field('footer_address_url'); ?>" target="_blank">
+                                    <?php the_field('footer_address'); ?>
+                                </a>
+                                </div>
+                            </div>
+                            </div>
                         <div class="footer_social_media">
                             <ul>
-                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/fb_icon.png"></a></li>
-                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/ig_icon.png"></a></li>
-                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/yt_icon.png"></a></li>
-                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/li_icon.png"></a></li>
+                                <?php if ($fb = get_field('footer_facebook')): ?>
+                                <li><a href="<?php echo esc_url($fb); ?>" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/fb_icon.png" alt="Facebook"></a>
+                                </li>
+                                <?php endif; ?>
+
+                                <?php if ($ig = get_field('footer_instagram')): ?>
+                                <li><a href="<?php echo esc_url($ig); ?>" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/ig_icon.png" alt="Instagram"></a>
+                                </li>
+                                <?php endif; ?>
+
+                                <?php if ($yt = get_field('footer_youtube')): ?>
+                                <li><a href="<?php echo esc_url($yt); ?>" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/yt_icon.png" alt="YouTube"></a>
+                                </li>
+                                <?php endif; ?>
+
+                                <?php if ($ln = get_field('footer_linkedin')): ?>
+                                <li><a href="<?php echo esc_url($ln); ?>" target="_blank">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/li_icon.png" alt="LinkedIn"></a>
+                                </li>
+                                <?php endif; ?>
                             </ul>
-                        </div>
+                            </div>
                     </div>
 
                     <div class="offset-md-1"></div>

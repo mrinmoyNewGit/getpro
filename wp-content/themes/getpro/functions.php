@@ -175,4 +175,15 @@ function getpro_register_expertise_post_type() {
     );
 }
 add_action('init', 'getpro_register_expertise_post_type');
+
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array(
+        'page_title'    => 'Theme General Settings',
+        'menu_title'    => 'Theme Settings',
+        'menu_slug'     => 'theme-general-settings',
+        'capability'    => 'edit_posts',
+        'position'      => 59,
+        'redirect'      => false
+    ));
+}
 ?>

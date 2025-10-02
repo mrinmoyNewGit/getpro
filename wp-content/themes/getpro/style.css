@@ -1145,9 +1145,9 @@ img.img-fluid.exp-two {
 }
 
 .upper_footer_inputs textarea {
-    color: #ffffff;
+    color: #ffffff !important;
     width: 100%;
-    background: #0e0e219e;
+    background: #0e0e219e !important;
     height: 90px;
     border: 1px solid #7c7c7c;
     padding: 0 20px;
@@ -1375,19 +1375,19 @@ img.img-fluid.exp-two {
     margin-bottom: -3px;
 }
 
-.footer_newsletter .fico_form_button {
-    margin-top: 27px;
+.footer_newsletter .fico_form_button input[type="submit"] {
+    margin-top: 10px;
 }
 
-.footer_newsletter .fico_form_button button {
+.footer_newsletter .fico_form_button input[type="submit"]  {
     background-color: #d88e29;
     color: #ffffff;
-    padding: 16px 56px;
+    padding: 13px 60px;
     position: relative;
     border-radius: 5px;
 }
 
-.footer_newsletter .fico_form_button button i{
+.footer_newsletter .fico_form_button input[type="submit"]  i{
     font-size: 12px;
     background-color: #fff;
     padding: 2px 2px;
@@ -1395,7 +1395,7 @@ img.img-fluid.exp-two {
     color: #2c6ac1;
 }
 
-.footer_newsletter .fico_form_button button:after {
+.footer_newsletter .fico_form_button input[type="submit"] :after {
   content: '';
   position: absolute;
   top: 0;
@@ -1408,7 +1408,7 @@ img.img-fluid.exp-two {
         -ms-transition: none;
             transition: none;
 }
-.footer_newsletter .fico_form_button button:hover:after {
+.footer_newsletter .fico_form_button input[type="submit"] :hover:after {
   width: 120%;
   background-color: rgba(255,255,255,0);
   
@@ -1648,5 +1648,128 @@ section.get_in_touch_form {
     flex-wrap: wrap !important;
 }
 
-                /*END CONTACT US*/   
+                /*END CONTACT US*/  
+/* Inner Page Content Section */
+.inner_page_content {
+    background-color: #121227; /* same dark background as other site sections */
+    padding: 60px 0;          /* spacing top/bottom */
+    color: #ffffff;           /* base text color */
+}
+
+.inner_page_content h1,
+.inner_page_content h2,
+.inner_page_content h3,
+.inner_page_content h4,
+.inner_page_content h5,
+.inner_page_content h6 {
+    color: #ffffff;           /* headings should also be white */
+    font-family: 'Muli', sans-serif;
+}
+
+.inner_page_content p {
+    color: #dfdfdf;           /* slightly lighter for paragraphs for readability */
+    line-height: 1.7em;
+    font-family: 'Muli', sans-serif;
+}
+
+.inner_page_content a {
+    color: #d88e29;           /* brand accent color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.inner_page_content a:hover {
+    color: #ffffff;           /* hover effect on links */
+} 
+/* Style the footer submit button */
+.upper_footer_inputs .upper_footer_button {
+    color: #0c0c1d; /* dark text */
+    font-family: 'Muli-SemiBold';
+    font-size: 16.97px;
+    text-transform: uppercase;
+    padding: 13px 40px;
+    border-radius: 38px;
+    border: 1px solid #d88e29;
+    cursor: pointer;
+    position: relative;
+    transition: all ease 0.3s;
+    background: #d88e29;
+    display: inline-block; /* make sizing behave correctly */
+}
+
+/* Hover */
+.upper_footer_inputs .upper_footer_button:hover {
+    color: #fff;
+    background: #b87420;
+}
+
+/* Contact Form 7 Validation & Error Styling */
+
+/* General error message at top */
+div.wpcf7-response-output.wpcf7-validation-errors,
+div.wpcf7-response-output.wpcf7-acceptance-missing {
+    color: #ffffff !important;           /* white text */
+    border: 1px solid #d88e29 !important; /* gold border */
+    background-color: #121227;            /* match site dark background */
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: 'Muli', sans-serif;
+}
+
+/* Success message (optional, make green/gold) */
+div.wpcf7-response-output.wpcf7-mail-sent-ok {
+    color: #0f0;                            /* light green text */
+    border: 1px solid #0f0;
+    background-color: #121227;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* Per-field error beneath inputs */
+span.wpcf7-not-valid-tip {
+    color: #fff !important;                /* white text */
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+}
+
+input.wpcf7-not-valid,
+textarea.wpcf7-not-valid {
+    border: 1px solid #d88e29 !important;  /* gold border for invalid */
+    background-color: rgba(255,255,255,0.05);
+    color: #fff;
+}
+/* Style the general form error message */
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+    color: #ffffff !important;              /* white text */
+    border: 1px solid #d88e29 !important;   /* gold outline */
+    background-color: #121227 !important;   /* match your dark site background */
+    padding: 12px 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+}
+
+/* Style the success (mail sent) message */
+.wpcf7 form.sent .wpcf7-response-output {
+    color: #0f0 !important;                 /* bright green */
+    border: 1px solid #0f0 !important;
+    background-color: #121227 !important;
+    padding: 12px 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Style when CF7 encounters a major error (mail failed) */
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.aborted .wpcf7-response-output {
+    color: #ff4d4d !important;
+    border: 1px solid #ff4d4d !important;
+    background-color: #121227 !important;
+    padding: 12px 15px;
+    border-radius: 5px;
+    text-align: center;
+}
 

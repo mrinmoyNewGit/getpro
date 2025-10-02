@@ -1,125 +1,109 @@
         <!-- START UPPER FOOTER SECTION -->
+<?php 
+// Get the page ID of "Global Settings"
+$global_page = get_page_by_path('global-settings'); 
+$settings_id = $global_page ? $global_page->ID : 0;
+?>
+
+<!-- START UPPER FOOTER SECTION -->
         <section class="upper_footer_sec">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="upper_footer_logo">
-                            <a href="<?php echo esc_url(home_url('/')); ?>">
-                                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/footer_logo.png" alt="<?php bloginfo('name'); ?>">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="upper_footer_para">
-                            <p>let's make something new, different <b>great together.</b> <span>Just say hello</span></p>
-                        </div>
-
-                        <div class="upper_footer_info">
-                            <div class="upper_footer_info_items">
-                                <div class="upper_footer_info_img">
-                                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_one.png">
-                                </div>
-                                <div class="upper_footer_info_cont">
-                                <h6><?php the_field('footer_phone_label'); ?></h6>
-                                <a href="tel:<?php the_field('footer_phone_number'); ?>">
-                                    <?php the_field('footer_phone_number'); ?>
-                                </a>
-                                </div>
-                            </div>
-
-                            <div class="upper_footer_info_items">
-                                <div class="upper_footer_info_img">
-                                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_two.png">
-                                </div>
-                                <div class="upper_footer_info_cont">
-                                <h6><?php the_field('footer_email_label'); ?></h6>
-                                <a href="mailto:<?php the_field('footer_email'); ?>">
-                                    <?php the_field('footer_email'); ?>
-                                </a>
-                                </div>
-                            </div>
-
-                            <div class="upper_footer_info_items">
-                                <div class="upper_footer_info_img">
-                                <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_three.png">
-                                </div>
-                                <div class="upper_footer_info_cont">
-                                <h6><?php the_field('footer_address_label'); ?></h6>
-                                <a href="<?php the_field('footer_address_url'); ?>" target="_blank">
-                                    <?php the_field('footer_address'); ?>
-                                </a>
-                                </div>
-                            </div>
-                            </div>
-                        <div class="footer_social_media">
-                            <ul>
-                                <?php if ($fb = get_field('footer_facebook')): ?>
-                                <li><a href="<?php echo esc_url($fb); ?>" target="_blank">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/fb_icon.png" alt="Facebook"></a>
-                                </li>
-                                <?php endif; ?>
-
-                                <?php if ($ig = get_field('footer_instagram')): ?>
-                                <li><a href="<?php echo esc_url($ig); ?>" target="_blank">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/ig_icon.png" alt="Instagram"></a>
-                                </li>
-                                <?php endif; ?>
-
-                                <?php if ($yt = get_field('footer_youtube')): ?>
-                                <li><a href="<?php echo esc_url($yt); ?>" target="_blank">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/yt_icon.png" alt="YouTube"></a>
-                                </li>
-                                <?php endif; ?>
-
-                                <?php if ($ln = get_field('footer_linkedin')): ?>
-                                <li><a href="<?php echo esc_url($ln); ?>" target="_blank">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/li_icon.png" alt="LinkedIn"></a>
-                                </li>
-                                <?php endif; ?>
-                            </ul>
-                            </div>
-                    </div>
-
-                    <div class="offset-md-1"></div>
-
-                    <div class="col-md-7">
-                        <div class="upper_footer_form">
-                            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <input type="hidden" name="action" value="contact_form">
-                                <?php /* If this line breaks the footer, just comment it out */ ?>
-                                <?php if (function_exists('wp_nonce_field')) wp_nonce_field('contact_form_nonce'); ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="upper_footer_inputs">
-                                            <label>Name</label>
-                                            <input type="text" name="name" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="upper_footer_inputs">
-                                            <label>Email Address</label>
-                                            <input type="email" name="email" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="upper_footer_inputs">
-                                            <label>Message</label>
-                                            <textarea name="message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="upper_footer_inputs">
-                                            <button type="submit" value="Submit">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="upper_footer_logo">
+                        <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/footer_logo.png" alt="<?php bloginfo('name'); ?>">
+                        </a>
                     </div>
                 </div>
+            
+            <div class="col-md-4">
+                <div class="upper_footer_para">
+                <p>
+                    let’s make something new, different 
+                    <b>great together.</b> <span>Just say hello</span>
+                </p>
+                </div>
+
+                <div class="upper_footer_info">
+                <div class="upper_footer_info_items">
+                    <div class="upper_footer_info_img">
+                    <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_one.png">
+                    </div>
+                    <div class="upper_footer_info_cont">
+                    <h6><?php the_field('footer_phone_label', $settings_id); ?></h6>
+                    <a href="tel:<?php the_field('footer_phone_number', $settings_id); ?>">
+                        <?php the_field('footer_phone_number', $settings_id); ?>
+                    </a>
+                    </div>
+                </div>
+
+                <div class="upper_footer_info_items">
+                    <div class="upper_footer_info_img">
+                    <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_two.png">
+                    </div>
+                    <div class="upper_footer_info_cont">
+                    <h6><?php the_field('footer_email_label', $settings_id); ?></h6>
+                    <a href="mailto:<?php the_field('footer_email', $settings_id); ?>">
+                        <?php the_field('footer_email', $settings_id); ?>
+                    </a>
+                    </div>
+                </div>
+
+                <div class="upper_footer_info_items">
+                    <div class="upper_footer_info_img">
+                    <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/images/icon/footer_icon/icon_three.png">
+                    </div>
+                    <div class="upper_footer_info_cont">
+                    <h6><?php the_field('footer_address_label', $settings_id); ?></h6>
+                    <a href="<?php the_field('footer_address_url', $settings_id); ?>" target="_blank">
+                        <?php the_field('footer_address', $settings_id); ?>
+                    </a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="footer_social_media">
+                <ul>
+                    <?php if ($fb = get_field('footer_facebook', $settings_id)): ?>
+                    <li><a href="<?php echo esc_url($fb); ?>" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/fb_icon.png" alt="Facebook">
+                    </a></li>
+                    <?php endif; ?>
+
+                    <?php if ($ig = get_field('footer_instagram', $settings_id)): ?>
+                    <li><a href="<?php echo esc_url($ig); ?>" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/ig_icon.png" alt="Instagram">
+                    </a></li>
+                    <?php endif; ?>
+
+                    <?php if ($yt = get_field('footer_youtube', $settings_id)): ?>
+                    <li><a href="<?php echo esc_url($yt); ?>" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/yt_icon.png" alt="YouTube">
+                    </a></li>
+                    <?php endif; ?>
+
+                    <?php if ($ln = get_field('footer_linkedin', $settings_id)): ?>
+                    <li><a href="<?php echo esc_url($ln); ?>" target="_blank">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/icon/social_media/li_icon.png" alt="LinkedIn">
+                    </a></li>
+                    <?php endif; ?>
+                </ul>
+                </div>
             </div>
+
+                <div class="offset-md-1"></div>
+
+                <div class="col-md-7">
+                    <div class="upper_footer_form">
+                        <?php echo do_shortcode('[contact-form-7 id="1cd266e" title="main contact form"]'); ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         </section>
+
 
         <!-- FOOTER COLUMNS -->
         <section class="upper_footer_sec">
@@ -173,16 +157,13 @@
                         <div class="footer_element footer_newsletter animatable bounceInRight">
                             <h6>NEWSLETTER</h6>
                             <p>Receive resources & tools that can help you prepare for the future. You can cancel anytime.</p>
-                            <form>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="YOUR MAIL HERE" required>
-                                </div>
-                                <div class="fico_form_button">
-                                    <button type="submit"><i class="fa fa-check" aria-hidden="true"></i> SUBSCRIBE NOW</button>
-                                </div>
-                            </form>
+                            
                         </div>
                         <?php } ?>
+                        <div class="footer_element footer_newsletter animatable bounceInRight">
+                            <?php echo do_shortcode('[contact-form-7 id="f993d18" title="Newsletter Form"]'); ?>
+                            
+                        </div>
                     </div>
                 </div>
             </div>

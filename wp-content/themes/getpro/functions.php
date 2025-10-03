@@ -186,4 +186,61 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'      => false
     ));
 }
+// Clean up Dashboard widgets
+function remove_default_dashboard_widgets() {
+    global $wp_meta_boxes;
+
+    // Right Now / At a Glance
+    unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+
+    // Activity
+    unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
+
+    // Quick Draft
+    unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+
+    // WordPress Events and News
+    unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+}
+add_action('wp_dashboard_setup', 'remove_default_dashboard_widgets', 999);
+
+// Add custom Welcome Widget
+function getpro_add_welcome_widget() {
+    wp_add_dashboard_widget(
+        'getpro_welcome_widget',             // Widget slug/ID
+        'Welcome to Get Pro Dashboard',      // Widget title
+        'getpro_render_welcome_widget'       // Callback function
+    );
+}
+add_action('wp_dashboard_setup', 'getpro_add_welcome_widget');
+
+// The content of the widget
+function getpro_render_welcome_widget() {
+    echo '<div class="getpro-dashboard-box">
+            <h2 style="color:#fff; margin:0;">Welcome to Get Pro Dashboard</h2>
+            <p style="color:#ddd;">Manage your website settings, content, and updates here.</p>
+          </div>';
+}
+
+// Custom CSS to style the widget box black
+function getpro_dashboard_custom_css() {
+    echo '<style>
+        #getpro_welcome_widget .getpro-dashboard-box {
+            background: #000000;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        #getpro_welcome_widget .getpro-dashboard-box h2 {
+            color: #ffffff !important;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        #getpro_welcome_widget .getpro-dashboard-box p {
+            color: #cccccc !important;
+            font-size: 14px;
+        }
+    </style>';
+}
+add_action('admin_head', 'getpro_dashboard_custom_css');
 ?>
